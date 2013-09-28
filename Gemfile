@@ -46,3 +46,10 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem "jquery_mobile_rails"
+
+group :development, :test do
+  gem 'rspec-rails'
+end
+group :development do
+  gem 'html2haml'
+end
