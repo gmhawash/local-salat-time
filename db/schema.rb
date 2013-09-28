@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20130928150317) do
   create_table "days", force: true do |t|
     t.date     "date"
     t.integer  "hijri"
-    t.hstore   "salat"
+    t.hstore   "times"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

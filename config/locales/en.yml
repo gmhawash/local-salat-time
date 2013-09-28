@@ -21,3 +21,9 @@
 
 en:
   hello: "Hello world"
+  fajr: Fajr
+  dhuhr: Dhuhr
+  asr: Asr
+  maghrib: Maghrib
+  isha: Isha'a
+  not_available: Sorry, salat time for this day is not available yet.

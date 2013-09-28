@@ -3,7 +3,7 @@ class CreateDays < ActiveRecord::Migration
     create_table :days do |t|
       t.date :date
       t.integer :hijri
-      t.hstore :salat
+      t.hstore :times
 
       t.timestamps
     end

@@ -1,16 +1,23 @@
 %div{"data-role" => "page", "data-theme" => "a"}
   %div{"data-position" => "inline", "data-role" => "header"}
-    %h1 It Worked!
+    %h1 Salat times for #{Date.today}
   %div{"data-role" => "content", "data-theme" => "a"}
-    %p
-      This is content color swatch "A" and a preview of a
-      = succeed "." do
-        %a.ui-link{:href => "#"} link
-    %label{:for => "slider1"} Input slider:
-    %input#slider1{"data-theme" => "a", :max => "100", :min => "0", :name => "slider1", :type => "range", :value => "50"}/
-    %fieldset{"data-role" => "fieldcontain", "data-type" => "horizontal"}
-      %legend Cache settings:
-      %input#radio-choice-a1{:checked => "checked", :name => "radio-choice-a1", :type => "radio", :value => "on"}/
-      %label{:for => "radio-choice-a1"} On
-      %input#radio-choice-b1{:name => "radio-choice-a1", :type => "radio", :value => "off"}/
-      %label{:for => "radio-choice-b1"} Off
+    - if @salat
+      %div.ui-body.ui-body-d.ui-corner-all
+        %table.table-stroke.ui-responsive{:data => {:role => 'table', :mode=>'fixed'}}
+          %thead
+            %tr.ui-bar-a
+              %th
+              %th Athan
+              %th Iqama
+
+          %tbody
+          - [:fajr, :dhuhr, :asr, :maghrib, :isha].each do |time|
+            %tr
+              %td=t(time)
+              %td= @salat.times["#{time}_athan"]
+              %td= @salat.times["#{time}_iqama"]
+    -else
+      = t('not_available')
+
+
