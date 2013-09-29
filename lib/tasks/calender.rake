@@ -2,6 +2,8 @@ namespace :calendar do
   desc "import month" 
   task :import => :environment do 
 
+    location = Location.find_by_nickname('furqan')
+
     header = [
      :fajr_athan, :fajr_iqama, 
      :sunrise,
@@ -15,14 +17,20 @@ namespace :calendar do
       times = day.split(" ").map(&:strip)
       date = Date.strptime(times.shift, '%m/%d/%Y')
       hijri = times.shift.to_i
-      salat = Hash[header.zip(times)]
+      times = Hash[header.zip(times)]
       
-      Day.create :date => date, :hijri => hijri, :times => salat
+      day = Day.find_or_create_by_date_and_location_id date, location.id
+
+      day.update_attributes :hijri => hijri, :times => times
     end
   end
 
   def month
      <<-MONTH
+      09/27/2013 21  5:50  6:10  7:09  1:01  1:30  4:13  4:30  6:51  7:01  8:12  8:35
+      09/28/2013 22  5:50  6:10  7:09  1:01  1:30  4:13  4:30  6:51  7:01  8:12  8:35
+      09/29/2013 23  5:50  6:10  7:09  1:01  1:30  4:13  4:30  6:51  7:01  8:12  8:35
+      09/30/2013 24  5:50  6:10  7:09  1:01  1:30  4:13  4:30  6:51  7:01  8:12  8:35
       10/1/2013 25  5:50  6:10  7:09  1:01  1:30  4:13  4:30  6:51  7:01  8:12  8:35
       10/2/2013 26  5:51  6:10  7:10  1:00  1:30  4:12  4:30  6:49  6:59  8:10  8:35
       10/3/2013 27  5:52  6:10  7:11  1:00  1:30  4:10  4:30  6:47  6:57  8:08  8:35

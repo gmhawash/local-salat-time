@@ -1,6 +1,6 @@
 %div{"data-role" => "page", "data-theme" => "a"}
   %div{"data-position" => "inline", "data-role" => "header"}
-    %h1 Salat times for #{Date.today}
+    %h1 Salat times for #{@location.name} on #{@salat.date}
   %div{"data-role" => "content", "data-theme" => "a"}
     - if @salat
       %div.ui-body.ui-body-d.ui-corner-all
@@ -14,7 +14,7 @@
           %tbody
           - [:fajr, :dhuhr, :asr, :maghrib, :isha].each do |time|
             %tr
-              %td=t(time)
+              %td.label=t(time)
               %td= @salat.times["#{time}_athan"]
               %td= @salat.times["#{time}_iqama"]
     -else
