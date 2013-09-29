@@ -1,6 +1,6 @@
 %div{"data-role" => "page", "data-theme" => "a"}
   %div{"data-position" => "inline", "data-role" => "header"}
-    %h1 Salat times for #{@location.name} on #{@salat.date}
+    %h1 #{@salat.date.to_s(:long)}
   %div{"data-role" => "content", "data-theme" => "a"}
     - if @salat
       %div.ui-body.ui-body-d.ui-corner-all
@@ -19,5 +19,7 @@
               %td= @salat.times["#{time}_iqama"]
     -else
       = t('not_available')
+  %div{"data-position" => "inline", "data-role" => "footer"}
+    %h1 #{@location.name}
 
 
