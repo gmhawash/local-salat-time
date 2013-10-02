@@ -1,24 +1,48 @@
 %div{"data-role" => "page", "data-theme" => "a", 'data-title' => 'Mobile Salat App'}
   %div{"data-position" => "inline", "data-role" => "header"}
-    %h1 #{@salat.date.to_s(:long)}
-  %div{"data-role" => "content", "data-theme" => "a"}
-    - if @salat
-      %div.ui-body.ui-body-d.ui-corner-all
-        %table.table-stroke.ui-responsive{:data => {:role => 'table', :mode=>'fixed'}}
+  %div{'data-role'=>'collapsible-set', "data-theme" => "a"}
+    %div{"data" => {"role" => "collapsible", "theme" => "a", "collapsed"=>"false"} }
+      %h3 #{@salat.date.to_s(:long)}
+      %p
+        - if @salat
+          %div.ui-body.ui-body-d.ui-corner-all
+            %table.table-stroke.ui-responsive{:data => {:role => 'table', :mode=>'fixed'}}
+              %thead
+                %tr.ui-bar-a
+                  %th
+                  %th Athan
+                  %th Iqama
+
+              %tbody
+              - [:fajr, :dhuhr, :asr, :maghrib, :isha].each do |time|
+                %tr
+                  %td.label=t(time)
+                  %td= @salat.times["#{time}_athan"]
+                  %td= @salat.times["#{time}_iqama"]
+        -else
+          = t('not_available')
+
+    %div{"data-role" => "collapsible", "data-theme" => "a"}
+      %h3 Iqama times for #{@salat.date.strftime('%B %Y')}
+      %p
+        %table{:data => {:role => :table, :mode => 'fixed'}}
           %thead
-            %tr.ui-bar-a
-              %th
-              %th Athan
-              %th Iqama
+            %tr
+              %th day
+              %th Fajr
+              %th Dhuhr
+              %th Asr
+              %th Maghrib
+              %th Isha
 
           %tbody
-          - [:fajr, :dhuhr, :asr, :maghrib, :isha].each do |time|
-            %tr
-              %td.label=t(time)
-              %td= @salat.times["#{time}_athan"]
-              %td= @salat.times["#{time}_iqama"]
-    -else
-      = t('not_available')
+            - @location.days.current_month.each do |salat|
+              %tr
+                %th= salat.date.day
+                - [:fajr, :dhuhr, :asr, :maghrib, :isha].each do |time|
+                  %td= @salat.times["#{time}_iqama"]
+
+
   %div{"data-position" => "inline", "data-role" => "footer"}
     %h1 #{@location.name}
 
