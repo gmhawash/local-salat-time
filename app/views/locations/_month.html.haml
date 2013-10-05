@@ -20,4 +20,4 @@
           %th= salat.date.strftime("%a")
           %th= salat.date.day
           - [:fajr, :dhuhr, :asr, :maghrib, :isha].each do |time|
-            %td= @salat.times["#{time}_iqama"]
+            %td= salat.times["#{time}_iqama"]
