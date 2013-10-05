@@ -13,6 +13,10 @@
  *= require_tree .
  */
 
+#month-view {
+  font-size: smaller;
+}
+
 table td.label {
   font-weight: bold;
 }
