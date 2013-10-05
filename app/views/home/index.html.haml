@@ -1,0 +1,4 @@
+%h1 Available Mosques
+- Location.all.each do |loc|
+  %ul
+    %li= link_to loc.display_name, loc.nickname

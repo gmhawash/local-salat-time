@@ -4,4 +4,12 @@ class Location < ActiveRecord::Base
       where(:date => Date.today.beginning_of_month..Date.today.next_month.beginning_of_month).order(:date)
     end
   end
+
+  def to_param
+    nickname
+  end
+
+  def display_name
+    [name, city].join(', ')
+  end
 end
