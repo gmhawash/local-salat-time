@@ -13,9 +13,9 @@
 
     %tbody
       - @location.days.current_month.each do |salat|
-        - css_class =  Date.today == salat.date ? ['active'] : []
+        - css_class =  @today == salat.date ? ['active'] : []
         - css_class << 'friday' if salat.date.friday?
-        - css_class << 'passed' if Date.today > salat.date
+        - css_class << 'passed' if @today > salat.date
         %tr{:class => css_class.join(' ')}
           %th= salat.date.strftime("%a")
           %th= salat.date.day

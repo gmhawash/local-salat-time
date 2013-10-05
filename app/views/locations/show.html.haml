@@ -3,7 +3,7 @@
     %h1 #{@location.name}
   %div{'data-role'=>'collapsible-set', "data-theme" => "a"}
     %div{"data" => {"role" => "collapsible", "theme" => "a", "collapsed"=>"false"} }
-      %h3 #{@salat.date.in_time_zone('Pacific Time (US & Canada)').strftime("%A %b %d, %Y")}
+      %h3 #{@salat.date.strftime("%A %b %d, %Y")}
       %p
         - if @salat
           %div.ui-body.ui-body-d.ui-corner-all
