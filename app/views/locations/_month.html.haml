@@ -1,0 +1,23 @@
+%h3 Iqama for #{@salat.date.strftime('%B %Y')}
+%p
+  %table{:data => {:role => :table, :mode => 'fixed'}}
+    %thead
+      %tr
+        %th day
+        %th date
+        %th Fajr
+        %th Dhuhr
+        %th Asr
+        %th Maghrib
+        %th Isha
+
+    %tbody
+      - @location.days.current_month.each do |salat|
+        - css_class =  Date.today == salat.date ? ['active'] : []
+        - css_class << 'friday' if salat.date.friday?
+        - css_class << 'passed' if Date.today > salat.date
+        %tr{:class => css_class.join(' ')}
+          %th= salat.date.strftime("%a")
+          %th= salat.date.day
+          - [:fajr, :dhuhr, :asr, :maghrib, :isha].each do |time|
+            %td= @salat.times["#{time}_iqama"]

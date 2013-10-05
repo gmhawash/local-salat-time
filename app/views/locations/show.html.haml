@@ -1,8 +1,9 @@
 %div{"data-role" => "page", "data-theme" => "a", 'data-title' => 'Mobile Salat App'}
-  %div{"data-position" => "inline", "data-role" => "header"}
+  %div{"data-position" => "inline", "data-role" => "header", 'data-theme' => 'b'}
+    %h1 #{@location.name}
   %div{'data-role'=>'collapsible-set', "data-theme" => "a"}
     %div{"data" => {"role" => "collapsible", "theme" => "a", "collapsed"=>"false"} }
-      %h3 #{@salat.date.to_s(:long)}
+      %h3 #{@salat.date.strftime("%A %b %d, %Y")}
       %p
         - if @salat
           %div.ui-body.ui-body-d.ui-corner-all
@@ -23,27 +24,7 @@
           = t('not_available')
 
     %div{"data-role" => "collapsible", "data-theme" => "a"}
-      %h3 Iqama times for #{@salat.date.strftime('%B %Y')}
-      %p
-        %table{:data => {:role => :table, :mode => 'fixed'}}
-          %thead
-            %tr
-              %th day
-              %th Fajr
-              %th Dhuhr
-              %th Asr
-              %th Maghrib
-              %th Isha
+      = render :partial => 'month'
 
-          %tbody
-            - @location.days.current_month.each do |salat|
-              %tr
-                %th= salat.date.day
-                - [:fajr, :dhuhr, :asr, :maghrib, :isha].each do |time|
-                  %td= @salat.times["#{time}_iqama"]
-
-
-  %div{"data-position" => "inline", "data-role" => "footer"}
-    %h1 #{@location.name}
 
 

@@ -16,3 +16,15 @@
 table td.label {
   font-weight: bold;
 }
+
+table tr.passed {
+  color: gray;
+}
+
+table tr.active {
+  border: 2px solid gray;
+}
+
+table tr.friday {
+  background-color: #00ccff;
+}
