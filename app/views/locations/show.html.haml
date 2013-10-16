@@ -22,9 +22,6 @@
                   %td= @salat.times["#{time}_iqama"]
         -else
           = t('not_available')
-        %h3.center{:style => 'text-align:center; color: red'} The day of Arafat is on Oct 14th
-        %h3.center{:style => 'text-align:center; color: red'} Eid Al-Adha is on Oct 15th
-        %h4.center{:style => 'text-align:center; color: blue'} Asr time is now consistent with printed schedule
 
     %div{"data-role" => "collapsible", "data-theme" => "a"}
       = render :partial => 'month'
