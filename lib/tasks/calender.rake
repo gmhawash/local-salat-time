@@ -2,7 +2,7 @@ namespace :calendar do
   desc "import month" 
   task :import => :environment do 
 
-    location = Location.find_by_nickname('furqan')
+    location = Location.find_or_create_by_nickname('furqan')
 
     header = [
      :fajr_athan, :fajr_iqama, 
