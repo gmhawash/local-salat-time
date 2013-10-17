@@ -3,9 +3,12 @@ LocalSalatTime::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
   get '/:location' => 'locations#show'
   resources :locations
+
+  namespace :admin do
+    resources :locations
+  end
 
   root 'home#index'
 
