@@ -5,7 +5,7 @@ class LocationsController < ApplicationController
 
   def show
     @location = Location.find_by_nickname(params[:location])
-    @today = day.in_time_zone(timezone).to_date
+    @today = today
     if @location
       @salat = @location.days.find_by_date(@today)
     else
@@ -13,9 +13,9 @@ class LocationsController < ApplicationController
     end
   end
 
-  def day
-    Time.parse(params[:day])
+  def today
+    Date.parse(params[:day])
   rescue
-    Time.now
+    Time.now.in_time_zone(timezone).to_date
   end
 end
