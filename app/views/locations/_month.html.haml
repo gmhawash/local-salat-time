@@ -12,7 +12,7 @@
         %th Isha
 
     %tbody
-      - @location.days.current_month.each do |salat|
+      - @location.days.current_month(@today).each do |salat|
         - css_class =  @today == salat.date ? ['active'] : []
         - css_class << 'friday' if salat.date.friday?
         - css_class << 'passed' if @today > salat.date
