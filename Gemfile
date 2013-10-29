@@ -7,6 +7,7 @@ gem 'haml-rails'
 gem 'pg'
 gem 'activerecord-postgres-hstore'
 gem 'rails_serve_static_assets'
+gem 'sorcery'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -45,7 +46,7 @@ end
 # gem 'capistrano', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'debugger', group: [:development, :test]
 
 gem "jquery_mobile_rails"
 
